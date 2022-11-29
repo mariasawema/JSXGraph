@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSXGraph template</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <!-- The jsxgraph version is defined in the next 2 lines (eg @1.4.5 defines version 1.4.5) -->
+    <link href="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.5/distrib/jsxgraph.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.5/distrib/jsxgraphcore.js" type="text/javascript"
+        charset="UTF-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+</head>
+
+<body>
+
+    <!-- You can define the width and height of your applet here -->
+    <!-- If it's not the standard 600 by 600 then the syntax for STACK is 
+        [[jsxgraph height='Apx' width='Bpx']] where A is the height and B
+        is the width -->
+    <div id="jxgbox" class="jxgbox" style="width:600px; height:600px;"></div>
+
+
+    <!-- Start your jsxgraph here -->
+    <script>
+        var board = JXG.JSXGraph.initBoard('jxgbox', { // STACK: when moving to STACK change 'jxgboard' for divid
+            boundingbox: [-1, 7, 10, -7],
+            keepaspectratio: true,
+            showCopyright: false,
+            axis: true,
+            showNavigation: true
+           
+        });
+    
+        var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-5, 5, 5, -3]});
+        var A = board.create('point',[-4,-2]);
+        var B = board.create('point',[0,-2]);
+        var p = board.create('line',[A,B],{name: 'p',withLabel: true, color: 'green'});
+        var C = board.create('glider', [4, 0, p]);
+        var E = board.create('point', [1,4], {name: 'E',size:2, color: 'blue'});
+        var q = board.create('line',[A,E],{name: 'q',withLabel: true, color: 'green'});
+        var r = board.create('line',[B,E],{name: 'r',withLabel: true, color: 'green'});
+        var F = board.create('glider', [0,0,q], {name: 'F',size:2, color: 'blue'});
+        var s = board.create('line',[C,F],{name: 's',withLabel: true, color: 'green'});
+        var G = board.create('intersection', [s, r,0], {name: 'G',size:2, color: 'blue'});
+        var t = board.create('line',[A,G],{color: 'grey', dash:"2"});
+        var u = board.create('line',[B,F],{color: 'grey', dash:"2"});
+        var H = board.create('intersection', [t, u], {name: 'H',size:2, color: 'blue'});
+        var v = board.create('line', [E,H],{color: 'grey', dash:"2"});
+        var D = board.create('intersection', [p, v, 0]);
+
+        var A = board.create('point' , [-1.2,-2], {color:  'orange' , size: 4 });
+        var B = board.create('point',  [0.25,-0.5], {color:  'orange' , size: 4 });
+        var hexagon = board.create('regularpolygon', [A,B, 6]);
+        var D = hexagon.vertices[3];
+        var Q = board.create('circumcenter',  [A, B, D], {name:'Q'});
+        var G = board.create('point', [3,-2],  {name: 'G', color: 'orange' , size: 4 });
+        var rtr = board.create('regularpolygon',  [B, G, 3]);
+        var H = rtr.vertices[2];
+        var R = board.create('circumcenter',  [B, G, H], {name: 'R'});
+        var tr = board.create('polygon',  [A, G, B], {color: 'pink'});
+        var P = board.create('midpoint', [A, G], {name: 'P'});
+        var q = board.create('line', [P, Q], {name: 'q', withLabel: true});
+        var r = board.create('line', [P, R], {name: 'r', withLabel: true});
+        var angle = board.create('angle', [R, P, Q], {radius: 0.4, color: 'red', fillOpacity: 0 , name:'&varphi;' });
+    </script>
+
+   
+
+</body>
+
+</html>
